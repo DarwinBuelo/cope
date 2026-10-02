@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seminar Demo: Tailwind CSS Utility-First</title>
+  <!-- Tailwind v4 via CDN - no build step needed -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-primary: #3b82f6;
+      --color-primary-dark: #2563eb;
+      --color-secondary: #6b7280;
+      --color-success: #10b981;
+      --color-info: #3b82f6;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+  <!-- NAVIGATION -->
+  <nav class="bg-primary/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 flex h-16 items-center justify-between">
+      <a href="#" class="font-semibold text-white text-lg tracking-wider">Tailwind Seminar</a>
+      <div class="hidden on md:block nav-links-mobile items-center gap-8">
+        <a href="#" class="text-white/70 hover:text-white transition-colors text-sm">Home</a>
+        <a href="#" class="text-white/70 hover:text-white transition-colors text-sm">Features</a>
+        <a href="#" class="text-white/70 hover:text-white transition-colors text-sm">Pricing</a>
+      </div>
+      <button class="md:hidden p-2">
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><stroke-width>2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN HERO SECTION -->
+  <section class="bg-gradient-to-b from-primary/10 to-gray-50 min-h-screen flex items-center justify-center">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <div class="px-4 py-12 max-w-md mx-auto">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-4">
+          Build Responsive<br />
+          Websites
+        </h1>
+        <p class="text-lg text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed">
+          The utility-first CSS framework that gives you all the building blocks you need
+          to build bespoke designs without ever leaving your HTML.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="#" class="bg-primary text-white font-medium px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors text-lg">
+            Get Started
+          </a>
+          <a href="#" class="border-2 border-white/50 text-white font-medium px-6 py-3 rounded-lg hover:bg-white/10 transition-colors text-lg">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES GRID -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <!-- Feature 1 -->
+        <div class="group bg-white rounded-xl p-6 hover:shadow-xl transition-shadow duration-300">
+          <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><stroke-width>2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">CSS Grid System</h3>
+          <p class="text-gray-600 text-sm">12-column responsive grid that adapts from mobile to desktop. Build complex layouts with minimal code.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="group bg-white rounded-xl p-6 hover:shadow-xl transition-shadow duration-300">
+          <div class="w-12 h-12 bg-success/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24"><stroke-width>2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 10v4M4.93 4.93l2.83 2.83m8.98 8.98l2.83 2.83M2 12h4m10 4h4m-7-7h10l5-13H4l-5 13H7z"></path></svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Pre-built Components</h3>
+          <p class="text-gray-600 text-sm">Navbars, cards, forms, modals, buttons - everything you need is ready via utility classes.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="group bg-white rounded-xl p-6 hover:shadow-xl transition-shadow duration-300">
+          <div class="w-12 h-12 bg-info/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-info" fill="none" stroke="currentColor" viewBox="0 0 24 24"><stroke-width>2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 10v4m4.93-4.93l-2.83 2.83m8.98-8.98l-2.83 2.83M2 12h4m10 4h4m-7-7h10l5-13H4l-5 13H7z"></path></svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Rapid Prototyping</h3>
+          <p class="text-gray-600 text-sm">Go from idea to functional prototype in hours. Perfect for MVPs, dashboards, and marketing sites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="py-12 bg-gradient-to-b from-primary/20 to-gray-50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="bg-white rounded-xl p-8 max-w-md mx-auto inline-block">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Ready to Start?</h2>
+        <p class="text-gray-600 text-lg mb-6">Spots are limited for our hands-on workshop. Reserve yours now and get:</p>
+        <ul class="list-disc list-inside text-gray-600 text-sm max-w-sm mx-auto">
+          <li>Complete responsive website in 3 days</li>
+          <hands-on activity>Real-world projects</hands-on activity>
+          <li>Certificate of completion</li>
+        </ul>
+        <a href="#" class="inline-block bg-primary text-white font-medium px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors mt-6">
+          Reserve My Spot
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white/70 py-8">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+        <div>
+          <h4 class="font-semibold mb-3">Tailwind Seminar</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div class="text-right">
+          <p class="text-xs opacity-60">© 2024 Tailwind Seminar. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    function toggleNav() {
+      const links = document.querySelector('.nav-links-mobile');
+      if (links) {
+        links.classList.toggle('hidden');
+        links.classList.toggle('on');
+      }
+    }
+  </script>
+</body>
+</html>

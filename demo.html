@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Design Demo</title>
+  <style>
+    /* === CSS VARIABLES & BASE STYLES === */
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #6b7280;
+      --background: #f8f9fa;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-top: 0;
+    }
+
+    /* === RESPONSIVE GRID WITH PERCENTAGES === */
+    .grid-container {
+      display: grid;
+      gap: 20px;
+      /* Start with 1 column, grow based on available space */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .grid-item {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    /* === PERCENTAGE-BASED WIDTH === */
+    .percentage-width {
+      width: 80%;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      padding: 30px;
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    /* === VIEWPORT HEIGHT UNITS === */
+    .vh-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+
+    .vh-section:nth-child(odd) {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    }
+
+    .vh-section:nth-child(even) {
+      background: linear-gradient(135deg, #ec4899, #f472b6);
+    }
+
+    /* === MEDIA QUERIES === */
+    @media (max-width: 1200px) {
+      .grid-container {
+        gap: 16px;
+        padding: 0 16px;
+      }
+
+      .grid-item {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .percentage-width {
+        width: 100%;
+        margin: 0 0 30px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .grid-item {
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    /* === TYPOGRAPHY RESPONSIVE USING VH === */
+    .responsive-heading {
+      font-size: clamp(2rem, 5vw + 1rem, 4rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    /* === BUTTON STYLES === */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* === CARD COMPONENT === */
+    .responsive-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 20px 0;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .responsive-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+    }
+
+    /* === TABLE RESPONSIVE === */
+    .responsive-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .responsive-table th,
+    .responsive-table td {
+      border: 1px solid var(--border);
+      padding: 12px;
+      text-align: left;
+    }
+
+    .responsive-table th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .responsive-table thead {
+        display: none;
+      }
+
+      .responsive-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .responsive-table td {
+        display: block;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      .responsive-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 12px;
+        width: 45%;
+        font-weight: 600;
+        color: var(--primary);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- RESPONSIVE NAVBAR -->
+  <nav class="bg-white border-b border-gray-200 shadow-sm" style="--bs-primary: var(--primary); --bs-secondary: var(--secondary);">
+    <div class="max-w-7xl mx-auto px-4 flex h-16 items-center justify-between">
+      <a href="#" class="font-semibold text-[var(--text)] text-lg tracking-wider">Responsive Design Demo</a>
+      
+      <div class="hidden md:block nav-links-mobile items-center gap-8">
+        <a href="#grid" class="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors text-sm">Grid</a>
+        <a href="#percentage" class="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors text-sm">Percentage</a>
+        <a href="#media" class="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors text-sm">Media Queries</a>
+        <a href="#table" class="text-[var(--text-muted)] hover:text-[var(--primary)] transition-colors text-sm">Table</a>
+      </div>
+      
+      <button class="md:hidden p-2" onclick="toggleNav()">
+        <svg class="w-6 h-6 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><stroke-width>2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION WITH VH -->
+  <section class="vh-section">
+    <h1 class="responsive-heading">Responsive Design Demo</h1>
+    <p style="font-size: 1.2rem; margin-bottom: 2rem;">Showcasing media queries, vh units, and percentage-based widths</p>
+    <div style="gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="#grid" class="btn btn-primary">See Grid Layout</a>
+      <a href="#percentage" class="btn btn-secondary">See Percentage Width</a>
+    </div>
+  </section>
+
+  <!-- PERCENTAGE-BASED WIDTH SECTION -->
+  <section id="percentage">
+    <div class="percentage-width">
+      <h2>Percentage-Based Width Container</h2>
+      <p>This container takes up 80% of the viewport width, with a maximum of 800px. Resize your browser window to see it fluidly adjust.</p>
+      <p>Useful for: Main content areas, forms, article bodies.</p>
+      <p>Current viewport width: <span id="viewport-width">calculating...</span></p>
+    </div>
+  </section>
+
+  <!-- RESPONSIVE GRID SECTION -->
+  <section id="grid" style="padding: 40px 0;">
+    <div class="grid-container">
+      <div class="grid-item">
+        <h3>Card 1</h3>
+        <p>This grid item uses minmax(300px, 1fr) with auto-fit. It will shrink below 300px then switch to multiple columns.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Card 2</h3>
+        <p>CSS Grid with responsive behavior. No media queries needed for the basic layout - the grid handles it.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Card 3</h3>
+        <p>Items automatically reflow as the viewport changes width.</p>
+      </div>
+      <div class="grid-item">
+        <h3>Card 4</h3>
+        <p>Try resizing this window past 1200px, then down to mobile.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA QUERIES DEMO -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <h2 style="text-align: center; margin-bottom: 3rem;">Media Query Breakpoints</h2>
+    
+    <div class="responsive-card">
+      <h3>Desktop (1200px+)</h3>
+      <p>Full grid layout with 4 columns, spacious padding.</p>
+    </div>
+
+    <div class="responsive-card">
+      <h3>Tablet (768px - 1199px)</h3>
+      <p>Grid switches to 1 column, reduced padding, smaller headings.</p>
+    </div>
+
+    <div class="responsive-card">
+      <h3>Mobile (480px - 767px)</h3>
+      <p>Single column layout, compact spacing, stacked elements.</p>
+    </div>
+
+    <div class="responsive-card">
+      <h3>Small Mobile (under 480px)</h3>
+      <p>Tightest layout, minimum padding, optimized touch targets.</p>
+    </div>
+  </section>
+
+  <!-- VIEWPORT HEIGHT SECTIONS -->
+  <section style="padding: 40px 0;">
+    <div class="vh-section">
+      <div>
+        <h2>Full Viewport Height Section 1</h2>
+        <p>This section takes up the full height of the viewport (100vh).</p>
+        <p>Useful for: Hero sections, full-screen introductions, section dividers.</p>
+      </div>
+    </div>
+
+    <div class="vh-section">
+      <div>
+        <h2>Full Viewport Height Section 2</h2>
+        <p>Alternating background colors demonstrate the vh unit layout.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPONSIVE TABLE -->
+  <section style="max-width: 100%; margin: 40px 0;">
+    <h2>Responsive Table (Mobile-First)</h2>
+    <p>Table collapses on mobile - each row becomes a block with labels.</p>
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th data-label="Name">Name</th>
+          <th data-label="Email">Email</th>
+          <th data-label="Role">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Name">Jamie Davis</td>
+          <td data-label="Email">jamie@northstar.io</td>
+          <td data-label="Role">Admin</td>
+        </tr>
+        <tr>
+          <td data-label="Name">Sophie Kim</td>
+          <td data-label="Email">sophie@design.co</td>
+          <td data-label="Role">Designer</td>
+        </tr>
+        <tr>
+          <td data-label="Name">Marcus Reed</td>
+          <td data-label="Email">marc@tech.io</td>
+          <td data-label="Role">Developer</td>
+        </tr>
+        <tr>
+          <td data-label="Name">Alex Lee</td>
+          <td data-label="Email">alex@marketing.biz</td>
+          <td data-label="Role">Marketing</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- RESPONSIVE HEADING DEMO -->
+  <section style="max-width: 800px; margin: 0 auto; padding: 20px; text-align: center;">
+    <h1 class="responsive-heading">Clamp-Based Responsive Heading</h1>
+    <p>This heading uses clamp(2rem, 5vw + 1rem, 4rem) — it scales between 32px and 64px based on viewport width.</p>
+    <p>Resize the browser to see the smooth transition.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="max-width: 1200px; margin: 40px auto 0; padding: 20px; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+    <p>Responsive Design Demo • Built with vanilla CSS • Media queries • vh units • Percentage widths</p>
+  </footer>
+
+  <script>
+    // Simple viewport width tracker
+    const viewportWidthEl = document.getElementById('viewport-width');
+    function updateViewportWidth() {
+      viewportWidthEl.textContent = `${window.innerWidth}px`;
+    }
+    updateViewportWidth();
+    window.addEventListener('resize', updateViewportWidth);
+    
+    // Mobile nav toggle
+    function toggleNav() {
+      const links = document.querySelector('.nav-links-mobile');
+      if (links) {
+        links.classList.toggle('hidden');
+        links.classList.toggle('md:block');
+      }
+    }
+  </script>
+
+</body>
+</html>
